@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.19/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.19",
+  "version": "1.0.0",
+  "id": "<<AAD_APP_CLIENT_ID>>",
+  "developer": {
+    "name": "Appsi",
+    "websiteUrl": "https://appsi.com",
+    "privacyUrl": "https://appsi.com/privacy",
+    "termsOfUseUrl": "https://appsi.com/terms"
+  },
+  "name": {
+    "short": "Claudette",
+    "full": "Claudette — Claude Code in Teams"
+  },
+  "description": {
+    "short": "Financial analysis assistant powered by Claude Code.",
+    "full": "Claudette bridges Microsoft Teams to a Claude Code agent for financial analysis, research, and automation."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#1A1A2E",
+  "bots": [
+    {
+      "botId": "<<AAD_APP_CLIENT_ID>>",
+      "scopes": ["personal", "team", "groupChat"],
+      "supportsFiles": true,
+      "isNotificationOnly": false
+    }
+  ],
+  "permissions": ["identity", "messageTeamMembers"],
+  "validDomains": ["<<BOT_DOMAIN>>", "token.botframework.com"],
+  "webApplicationInfo": {
+    "id": "<<AAD_APP_CLIENT_ID>>",
+    "resource": "https://RscBasedStoreApp"
+  },
+  "authorization": {
+    "permissions": {
+      "resourceSpecific": [
+        { "name": "ChannelMessage.Read.Group", "type": "Application" },
+        { "name": "ChannelMessage.Send.Group", "type": "Application" },
+        { "name": "Member.Read.Group", "type": "Application" }
+      ]
+    }
+  }
+}

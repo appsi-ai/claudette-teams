@@ -1,0 +1,10 @@
+.env
+venv/
+__pycache__/
+*.pyc
+bot.log*
+audit.log
+.sessions.json
+.references.json
+appManifest/manifest.zip
+appManifest/*.png

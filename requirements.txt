@@ -1,0 +1,14 @@
+# Microsoft 365 Agents SDK (Teams hosting). Bot Framework SDK was archived
+# Dec 2025; this is the supported successor. See bf-migration-python docs.
+microsoft-agents-hosting-core>=0.1.0
+microsoft-agents-activity>=0.1.0
+microsoft-agents-hosting-aiohttp>=0.1.0
+microsoft-agents-hosting-teams>=0.1.0
+microsoft-agents-authentication-msal>=0.1.0
+
+# HTTP + auth for Microsoft Graph (channel/group file uploads, attachment downloads)
+httpx>=0.27.0
+msal>=1.28.0
+
+python-dotenv>=1.0.0
+aiofiles>=23.0.0
