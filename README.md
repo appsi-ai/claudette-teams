@@ -52,7 +52,7 @@ Emulator** — no Azure, no Teams, no tunnel. This exercises the real code path
 ### 1. Get the code and a virtual environment
 
 ```powershell
-cd C:\Users\brook\OneDrive\Documents\GitHub\claudette-teams
+cd path\to\claudette-teams
 python -m venv venv
 .\venv\Scripts\Activate.ps1        # PowerShell. (cmd: venv\Scripts\activate.bat)
 pip install -r requirements.txt
@@ -77,7 +77,7 @@ CONNECTIONS__SERVICE_CONNECTION__SETTINGS__CLIENTSECRET=
 CONNECTIONS__SERVICE_CONNECTION__SETTINGS__TENANTID=
 
 # Where Claude runs. Point at the repo you want it to work in.
-PROJECT_DIR=C:\Users\brook\OneDrive\Documents\GitHub\react-times-dashboard
+PROJECT_DIR=C:\path\to\your\working-directory
 
 PORT=3978
 
