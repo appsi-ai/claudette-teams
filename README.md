@@ -29,6 +29,7 @@ replies are delivered **proactively** via a stored conversation reference.
 | `config.py` | Env, logging, auth tiers, session/reference persistence, markdown + chunking |
 | `appManifest/` | Teams app manifest + icons (zip → sideload) |
 | `setup-teams.md` | Azure Bot + App Service + manifest walkthrough |
+| `CLAUDE.md.example` | Persona / ops manual for the Claude side — copy to `PROJECT_DIR` as `CLAUDE.md` |
 
 ## Run it locally (no Azure needed)
 
@@ -92,7 +93,22 @@ CLAUDE_TIMEOUT=7200
 > Why blank `AUTHORIZED_USERS`? Auth keys on the sender's Entra **object id**, which
 > the Emulator doesn't provide — so an allowlist would reject every local message.
 
-### 3. Confirm `claude` works from this folder
+### 3. Set up the Claude-side persona (`CLAUDE.md`)
+
+The bot launches `claude` with `PROJECT_DIR` as its working directory, so Claude
+Code automatically picks up a `CLAUDE.md` in that folder. **This is how Claudette
+gets her voice, file-sharing conventions, and channel/DM behavior** — without it
+you'll get a generic, chatty Claude.
+
+```powershell
+Copy-Item CLAUDE.md.example $env:PROJECT_DIR\CLAUDE.md
+```
+
+Edit the copy if you want to change the persona, but keep the sections on
+**Teams markdown**, **`attach:<path>`**, and **channel `SKIP` behavior** — the
+bot depends on those conventions.
+
+### 4. Confirm `claude` works from this folder
 
 ```powershell
 claude -p "say hello" --model claude-opus-4-6[1m]
@@ -101,7 +117,7 @@ claude -p "say hello" --model claude-opus-4-6[1m]
 If that errors (not on PATH, not logged in, bad model name), fix it before
 continuing — the bot can only be as healthy as the CLI it drives.
 
-### 4. Start the bot
+### 5. Start the bot
 
 ```powershell
 python bot.py
@@ -114,7 +130,7 @@ the health route in another terminal:
 curl http://localhost:3978/health      # -> {"status":"ok","bot":"claudette-teams"}
 ```
 
-### 5. Connect the Emulator
+### 6. Connect the Emulator
 
 1. Open **Bot Framework Emulator → Open Bot**.
 2. **Bot URL:** `http://localhost:3978/api/messages`
@@ -124,7 +140,7 @@ curl http://localhost:3978/health      # -> {"status":"ok","bot":"claudette-team
 Each Emulator conversation maps to one live `claude` process; follow-up messages
 resume the same session.
 
-### 6. (Optional) Test from real Teams while still running locally
+### 7. (Optional) Test from real Teams while still running locally
 
 The Emulator covers everything except Teams-specific UI (FileConsentCard, channel
 mentions). To hit the local bot from actual Teams you must expose port 3978 publicly
